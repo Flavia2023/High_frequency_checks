@@ -52,20 +52,5 @@ cd "${cwd}"
 	do "2_dofiles/4_checksurvey_Baseline.do"									// check survey do-file
 
 	do "2_dofiles/7_checksurvey_Baseline_newsubmissions.do", nostop
-	
-*	do "2_dofiles/5_prepbc_Baseline.do"											// prep back check do-file
-*	do "2_dofiles/6_checkbc_Baseline.do"										// check survey do-file
-
-	
-**# Listing Survey
-*------------------------------------------------------------------------------*
-*	do "2_dofiles/1_globals_Listing.do"											// globals do-file
-*	do "2_dofiles/2_import_Listing.do"											// import do-file
-	
-*	do "2_dofiles/3_prepsurvey_Listing.do", nostop
-	// prep survey do-file
-*	do "2_dofiles/4_checksurvey_Listing.do", nostop								// check survey do-file
-*	do "2_dofiles/5_prepbc_Listing.do", nostop									// prep back check do-file
-*	do "2_dofiles/6_checkbc_Listing.do", nostop									// check survey do-file
 
 ** END **
