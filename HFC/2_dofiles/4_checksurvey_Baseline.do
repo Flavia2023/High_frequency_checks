@@ -1,5 +1,3 @@
-*! version 4.0.4 Innovations for Poverty Action 13mar2023
-
 ********************************************************************************
 ** 	TITLE	: 4_checksurvey_Baseline.do
 **
@@ -136,7 +134,7 @@
   rename modb_b2 phone_number
   rename concat_names_modb full_name
   
-replace tsc_number=. if tsc_number==-555 // -555 is "prefer not to answer" but we need to avoid it showing up as a duplicate.
+replace tsc_number=. if tsc_number==-555 // -555 is "prefer not to answer" so we need to avoid it showing up as a duplicate.
 
    if $run_dups {
 	   ipacheckdups ${dp_vars},							///
@@ -339,7 +337,6 @@ replace modd_d1_cal_year=-666 if(modb_b10_filtre!=1|modb_b9!=0)
  replace modd_d20a ="-666" if(modb_b9!=0|modb_b10_filtre!=1|survey_type!=2)
  
  // Changing the format of the birth date variable from string to date
- 
  replace modd_d34= "-666" if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age>=45)
  replace modd_d35= -666 if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age<45)
  replace modd_d37a= "-666" if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age>=45) //FU: Select multiple
@@ -558,7 +555,7 @@ save "${cwd}/3_checks/2_outputs/1_Baseline/$folder_date/missingness.dta", replac
    }
 
  
-      *========================= Enumerator Dashboard ============================* It creates the output but gives "ERROR: VARIABLE MEDIA NOT FOUND" so I implement ipachecksurveydb but specifying a disaggregation by enumerator name, I also run a portion of the the "corrected" ipacheckenumdb command keeping only the available surveys.
+      *========================= Enumerator Dashboard ============================* It creates the output but gives "ERROR: VARIABLE MEDIA NOT FOUND" due to a typo in IPA's .ado file, so I implement ipachecksurveydb but specifying a disaggregation by enumerator name, I also run a portion of the the "corrected" ipacheckenumdb command keeping only the available surveys.
 
 * do "2_dofiles/ipacheckenumdb.do"
 
@@ -762,20 +759,6 @@ restore
 	quietly{
  **# Identifying the "not applicable" questions for the numerical variables
  
- /* Reminder of the variables that most commonly determine relevance
-HT: survey_type==1
-TC: survey_type==2
-
-Female: modb_b9==0
-Male: modb_b9==1
-
-Children: modb_b10_filtre==1
-No children: modb_b10_filtre==0
-
->45: modb_b3 < date('1978-06-01') i.e. 6575 for Stata
-<45: modb_b3 >= date('1978-06-01') i.e. 6575 for Stata
-CHANGED TO age >=/< 45
-*/
 replace modb_b10b=-666 if modb_b10_filtre!=1 
 replace modb_b10d=-666 if(modb_b10c!=1|modb_b10_filtre!=1)
 replace modd_d27a=-666 if(modd_d27!=1|modb_b10_filtre!=0|modb_b9!=0)
@@ -953,7 +936,7 @@ restore
  
  restore
 
-**# Ipacheckoutliers - does not work but I coded my own alternative
+**# Ipacheckoutliers - IPA's command does not work but I coded my own alternative
 
    if $run_outliers {
 		ipacheckoutliers using "${inputfile}",			///
@@ -1017,7 +1000,10 @@ global varlist_enums r(${enum})
 count
 local n_obs=r(N)
 levelsof subcounty
-local varlist_subcounties=r(levels) //Update: later need to change the varlist to the full set of sampled subcounties, now I am only running the check based on those available in the sample dataset
+local varlist_subcounties=r(levels) 
+
+//Update: later need to change the varlist to the full set of sampled subcounties, now I am only running the check based on those available in the sample dataset
+
 foreach i of local varlist_subcounties {
 		preserve
 		keep if(subcounty==`i'&s_status==1&${consent}) // Checks only consented, completed surveys

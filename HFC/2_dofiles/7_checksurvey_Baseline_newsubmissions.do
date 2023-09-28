@@ -2,7 +2,7 @@
 ********************************************************************************
 ** 	TITLE	: 4_checksurvey_Baseline_newsubmissions.do
 **
-**	PURPOSE	: Run High Frequency Checks on recent observations only
+**	PURPOSE	: Run High Frequency Checks on recent observations only (set the desired date)
 **				
 **	AUTHOR	: Flavia Ungarelli
 **
@@ -18,8 +18,6 @@ quietly{
 	
 	gl hfc_output_new	"${cwd}/3_checks/2_outputs/1_Baseline/$folder_date/new_observations/hfc_output.xlsx"
 }
-
-
 
 **# Dropping submissions more than z days old ***
 quietly{
@@ -117,9 +115,9 @@ replace tsc_number=. if(tsc_number==-555|tsc_number==-888) // -555 is "prefer no
 				id(unique_id_nodups)					///
 				enumerator(${enum}) 					///	
 				date(${date})	 						///
-				outfile("${hfc_output_new}") 				///
+				outfile("${hfc_output_new}") 			///
 				outsheet("duplicates")					///
-				keep(${keepvars})	 				///
+				keep(${keepvars})	 					///
 				${dp_nolabel}							///
 				sheetreplace
    }
@@ -176,7 +174,7 @@ drop availability_str s_status_str
    if $run_missing { 
 		ipacheckmissing ${ms_vars}, 					///
 			priority(${ms_pr_vars})						///
-			outfile("${hfc_output_new}") 					///
+			outfile("${hfc_output_new}") 				///
 			outsheet("missing")							///
 			sheetreplace		
    }

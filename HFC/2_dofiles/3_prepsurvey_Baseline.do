@@ -19,56 +19,6 @@ foreach var of varlist _all{
 	format `var'
 }
 
-/*
-** I don't know **
-foreach var in modf_f4 modg_g11 modh_h3 modh_h9 modh_h10 modi_i3 modi_i4a modi_i5a modi_i6a modi_i7a modj_j3a modj_j6 modb_b2_whatsapp {
-	tostring `var', replace
-	replace `var'=-999 if `var'==3
-	}
-	
-foreach var of varlist modd_d17* {
-	replace `var'=-999 if `var'==3
-} 
-	
-foreach var of varlist modd_d22*_male {
-	replace `var'=-999 if `var'==3
-	}
-//yesnodk questions
-	
-replace modh_h6=-999 if modh_h6==3 //spc_decision
-replace modh_h7=-999 if modh_h7==5 //brfeed_expmilk
-
-foreach var in modf_f17_male modf_f18_male modf_f19_male{
-	replace `var'=-999 if `var'==5
-	} 
-//support_male
-
-replace modf_f7_male=-999 if modf_f7_male==5 //a_likert_male
-
-** Other specify **
-replace modl_l24b="-777" if modl_l24b=="5" // latereasons 
-// FU: For now I am leaving it like this but it is a select multiple, so it is necessary to change the options in survey cto
-
-foreach var in modd_d14c_male modd_d34 modd_d34_male modd_d15_male {
-	destring `var', replace
-	replace `var'=-777 if `var'==4
-	}
-	//contrcttype_male and futurearrang
-	
-foreach var of varlist _all {
-	capture confirm numeric variable `var'
-		if !_rc {
-		replace `var' = -999 if(`var'==-222&"`var'"!="modd_d4"&"`var'"!="modd_d4_male")		
-        }
-		else {
-		replace `var' = "-999" if(`var'=="-222"&"`var'"!="modd_d4"&"`var'"!="modd_d4_male")
-        }
-	}	
-
-replace modd_d15="-777" if modd_d15=="4" //contrcttype - select multiple so str
-replace modk_k4a="-777" if modd_d15=="6" //incentives - select multiple so str
-*/
-
 	if "$dk_num" ~= "" {
 		loc dk_num = trim(itrim(subinstr("$dk_num", ",", " ", .)))
 		ds, has(type numeric)
@@ -308,16 +258,6 @@ label variable modd_d27_male "Plan to have children (male)"
 label variable recording "Consent audio recording"
 label variable modb_b5 "Marriage status"
  }
- 
-**# Generate datevars from surveycto default datetime vars
-*------------------------------------------------------------------------------*
-	quietly{
-/*	gen startdate 	= dofc(starttime)
-	gen enddate		= dofc(endtime)
-	
-	format %td startdate enddate subdate
-*/
-}
 	
 **# Drop observations with date before jan 2023
 *------------------------------------------------------------------------------*

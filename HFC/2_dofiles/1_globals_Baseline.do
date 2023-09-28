@@ -16,7 +16,7 @@
 	gl run_ids				1	//	Check Survey ID for duplicates
 	gl run_dups				1	//	Check other Survey variables for duplicates
 	gl run_missing			1	//	Check variable missingness
-	gl run_outliers			0	//	Check numeric variables for outliers		// Wrote alternative code for detecting outliers
+	gl run_outliers			0	//	Check numeric variables for outliers		// Wrote alternative code
 	gl run_constraints		1	//	Check numeric variables for constraint violations
 	gl run_logic			1	//	Check variables for logical violations
 	gl run_specify			1	//	Check for other specify values				
