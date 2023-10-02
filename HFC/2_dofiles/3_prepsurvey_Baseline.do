@@ -300,7 +300,7 @@ gen availability_str="."
 **# String length
 *------------------------------------------------------------------------------*
 	quietly {
-// Generating variables measuring the length of the open answer questions
+// Generating variables measuring the length of open answer questions
  gen length_reason_refusal = ustrlen(reason_refusal) if reason_refusal!=""
  gen length_modl_l18 = ustrlen(modl_l18) if modl_l18!=""
  gen length_modl_l23a = ustrlen(modl_l23a) if modl_l23a!=""

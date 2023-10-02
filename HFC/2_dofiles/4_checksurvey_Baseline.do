@@ -266,7 +266,7 @@ replace modd_d1_cal_year=-666 if(modb_b10_filtre!=1|modb_b9!=0)
  
  // for HT and TC female with kids
  replace modd_d3=-666 if(modb_b9!=0|modb_b10_filtre!=1)
- replace modd_d4="-666" if(modb_b9!=0|modb_b10_filtre!=1) // FU: Select multiple
+ replace modd_d4="-666" if(modb_b9!=0|modb_b10_filtre!=1) // Select multiple
  replace modd_d5_filtre=-666 if(modb_b9!=0|modb_b10_filtre!=1)
  replace modd_d5=-666 if(modd_d5_filtre!=0) //Check
  replace modd_d5=-666 if(modb_b9!=0|modb_b10_filtre!=1)
@@ -291,7 +291,7 @@ replace modd_d1_cal_year=-666 if(modb_b10_filtre!=1|modb_b9!=0)
  
  replace modd_d34= "-666" if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age>=45)
  replace modd_d35= -666 if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age<45)
- replace modd_d37a= "-666" if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age>=45) //FU: Select multiple
+ replace modd_d37a= "-666" if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age>=45) // Select multiple
  replace modd_d38= -666 if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age>=45)
  
 
@@ -315,7 +315,7 @@ replace modd_d1_cal_year=-666 if(modb_b10_filtre!=1|modb_b9!=0)
  
  // for HT and TC female with kids
  replace modd_d3=-666 if(modb_b9!=0|modb_b10_filtre!=1)
- replace modd_d4="-666" if(modb_b9!=0|modb_b10_filtre!=1) // FU: Select multiple
+ replace modd_d4="-666" if(modb_b9!=0|modb_b10_filtre!=1) // Select multiple
  replace modd_d5_filtre=-666 if(modb_b9!=0|modb_b10_filtre!=1)
  replace modd_d5=-666 if(modd_d5_filtre!=0) //Check
  replace modd_d5=-666 if(modb_b9!=0|modb_b10_filtre!=1)
@@ -339,7 +339,7 @@ replace modd_d1_cal_year=-666 if(modb_b10_filtre!=1|modb_b9!=0)
  // Changing the format of the birth date variable from string to date
  replace modd_d34= "-666" if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age>=45)
  replace modd_d35= -666 if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age<45)
- replace modd_d37a= "-666" if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age>=45) //FU: Select multiple
+ replace modd_d37a= "-666" if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age>=45) // Select multiple
  replace modd_d38= -666 if(modb_b9!=0|survey_type==2|modb_b10_filtre!=1|age>=45)
  
 
@@ -379,10 +379,10 @@ tostring modd_d20a modd_d19a modd_d15, replace
 // only for women planning to have children (<45 and no children yet)
 replace modd_d34="-666" if modd_d27!=1
 replace modd_d35=-666 if modd_d27!=1
-replace modd_d37a="-666" if modd_d27!=1 // FU: Select multiple
+replace modd_d37a="-666" if modd_d27!=1 // Select multiple
 replace modd_d38=-666 if modd_d27!=1
 replace modd_d13c_male=-666 if(modd_d11b_male!=1&modd_d11b_male!=3&survey_type!=1)
-replace modd_d20a_male="-666" if modd_d1b_male<6 // FU: Select multiple
+replace modd_d20a_male="-666" if modd_d1b_male<6 //  Select multiple
 replace modd_d34_male="-666" if modd_d27_male!=1
 }
 
@@ -494,7 +494,7 @@ label variable modk_k5 "Would you be willing to be a member of the committee?"
 label variable years_as_teacher "Years as teacher (calculate)"
 }
 
- quietly{ // Temporarily reverting .d missing values to "-999" FU: ?
+ quietly{ // Temporarily reverting .d missing values to "-999"
 	foreach var of varlist _all {
 	capture confirm numeric variable `var'
 		if !_rc {

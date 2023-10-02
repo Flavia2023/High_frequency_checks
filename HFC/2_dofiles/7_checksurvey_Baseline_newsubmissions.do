@@ -351,8 +351,6 @@ restore
 
  preserve
  
- replace modc_c22=12 if duration==1482 // FU: just to show how it works
- 
   // Labelling the errors that will show in the constraint output
  label variable reason_refusal "Reason for refusal may be too short"
  label variable length_modl_l18 "What did the health inspection check? (short)"

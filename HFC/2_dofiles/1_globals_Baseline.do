@@ -24,14 +24,13 @@
 	gl run_textaudit		0	//	Check Survey duration using text audit data
 	gl run_timeuse			0	//	Check active survey hours using text audit data	
 	
-	// FU: To activate the textaudit check we should add a text audit field to the survey. This option will record timing information (in seconds) about each field visited while filling out that form.
+	// FU: To activate the textaudit check we should add a text audit field to the survey. This option will record timing information (in seconds) about each field visited while filling out the form.
 	
 	gl run_surveydb			1	//	Create survey Dashboard
 	gl run_enumdb			1	//	Create enumerator Dashboard					// Used surveydb disaggregated by enumerator instead
 	gl run_tracksurvey		0	// 	Report on survey progress					// Wrote alternative code for tracking surveys
-	gl run_trackbc 			0  	//  Report on Back check progress 				// Update: Will add once bc are decided
-	gl run_bc				0	//	Back Check comparison 						// Update: Will add once bc are decided
-
+	gl run_trackbc 			0  	//  Report on Back check progress 				
+	gl run_bc				0	//	Back Check comparison 						
 /* Input Files
 
 	Description of globals for input files:
